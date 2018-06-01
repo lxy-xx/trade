@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.immmoc.dao.moneyMapper">
-  <resultMap id="BaseResultMap" type="com.immmoc.model.money">
+<mapper namespace="com.safewind.dao.MoneyMapper">
+  <resultMap id="BaseResultMap" type="com.safewind.model.Money">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="remainsum" jdbcType="DECIMAL" property="remainsum" />
@@ -19,13 +19,13 @@
     delete from money
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.immmoc.model.money">
+  <insert id="insert" parameterType="com.safewind.model.Money">
     insert into money (id, userid, remainsum
       )
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{remainsum,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.immmoc.model.money">
+  <insert id="insertSelective" parameterType="com.safewind.model.Money">
     insert into money
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.immmoc.model.money">
+  <update id="updateByPrimaryKeySelective" parameterType="com.safewind.model.Money">
     update money
     <set>
       <if test="userid != null">
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.immmoc.model.money">
+  <update id="updateByPrimaryKey" parameterType="com.safewind.model.Money">
     update money
     set userid = #{userid,jdbcType=INTEGER},
       remainsum = #{remainsum,jdbcType=DECIMAL}

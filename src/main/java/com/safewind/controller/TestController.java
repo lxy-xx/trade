@@ -9,14 +9,32 @@ import com.safewind.service.TestService;
 @Controller
 
 public class TestController {
-	@Autowired
-	private TestService testService;
-	
+//	@Autowired
+//	private TestService testService;
+//
 	@RequestMapping("hello")
 	public String MyJsp(Model model){
-		
-		model.addAttribute("message", testService.getMessage());
-		
-		return "MyJsp";
+
+
+
+		return "login";
 	}
+	/**
+	 * 登录验证
+	 */
+
+	/**
+	 * 注册
+	 *
+	 */
+
+	/**
+	 * ajax的用户名（手机）
+	 */
+
+	/**
+	 *
+	 */
+
+
 }

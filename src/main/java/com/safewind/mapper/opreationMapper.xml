@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.immmoc.dao.opreationMapper">
-  <resultMap id="BaseResultMap" type="com.immmoc.model.opreation">
+<mapper namespace="com.safewind.dao.OpreationMapper">
+  <resultMap id="BaseResultMap" type="com.safewind.model.Opreation">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="remainsumid" jdbcType="INTEGER" property="remainsumid" />
     <result column="oprationtype" jdbcType="INTEGER" property="oprationtype" />
@@ -23,7 +23,7 @@
     delete from operation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.immmoc.model.opreation">
+  <insert id="insert" parameterType="com.safewind.model.Opreation">
     insert into operation (id, remainsumid, oprationtype, 
       towhoid, transferaccounts, savemoney, 
       drawmoney)
@@ -31,7 +31,7 @@
       #{towhoid,jdbcType=INTEGER}, #{transferaccounts,jdbcType=DECIMAL}, #{savemoney,jdbcType=DECIMAL}, 
       #{drawmoney,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.immmoc.model.opreation">
+  <insert id="insertSelective" parameterType="com.safewind.model.Opreation">
     insert into operation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.immmoc.model.opreation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.safewind.model.Opreation">
     update operation
     <set>
       <if test="remainsumid != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.immmoc.model.opreation">
+  <update id="updateByPrimaryKey" parameterType="com.safewind.model.Opreation">
     update operation
     set remainsumid = #{remainsumid,jdbcType=INTEGER},
       oprationtype = #{oprationtype,jdbcType=INTEGER},

@@ -2,7 +2,7 @@ package com.safewind.model;
 
 import java.math.BigDecimal;
 
-public class money {
+public class Money {
     private Integer id;
 
     private Integer userid;

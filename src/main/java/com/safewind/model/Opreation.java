@@ -2,7 +2,7 @@ package com.safewind.model;
 
 import java.math.BigDecimal;
 
-public class opreation {
+public class Opreation {
     private Integer id;
 
     private Integer remainsumid;

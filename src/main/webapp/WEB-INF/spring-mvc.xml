@@ -51,6 +51,13 @@
         <property name="maxUploadSize" value="10485760000" />    
         <!-- 内存中的最大值 -->  
         <property name="maxInMemorySize" value="40960" />    
-    </bean>   
+    </bean>
+
+
+    <mvc:resources mapping="/font/**" location="/static/font/" />
+    <mvc:resources mapping="/css/**" location="/static/css/" />
+    <mvc:resources mapping="/images/**" location="/static/images/" />
+    <mvc:resources mapping="/js/**" location="/static/js/" />
+
   
 </beans>  

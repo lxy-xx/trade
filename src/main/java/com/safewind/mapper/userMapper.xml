@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.immmoc.dao.userMapper">
-  <resultMap id="BaseResultMap" type="com.immmoc.model.user">
+<mapper namespace="com.safewind.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.safewind.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
@@ -21,13 +21,13 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.immmoc.model.user">
+  <insert id="insert" parameterType="com.safewind.model.User">
     insert into user (id, real_name, phone_number, 
       password, email)
     values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
       #{password,jdbcType=CHAR}, #{email,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.immmoc.model.user">
+  <insert id="insertSelective" parameterType="com.safewind.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.immmoc.model.user">
+  <update id="updateByPrimaryKeySelective" parameterType="com.safewind.model.User">
     update user
     <set>
       <if test="realName != null">
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.immmoc.model.user">
+  <update id="updateByPrimaryKey" parameterType="com.safewind.model.User">
     update user
     set real_name = #{realName,jdbcType=VARCHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
