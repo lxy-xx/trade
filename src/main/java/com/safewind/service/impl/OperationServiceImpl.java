@@ -1,7 +1,6 @@
 package com.safewind.service.impl;
 
-import com.safewind.dao.OperationMapper;
-import com.safewind.model.Money;
+import com.safewind.dao.OperationDao;
 import com.safewind.model.Operation;
 import com.safewind.service.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OperationServiceImpl implements OperationService {
     @Autowired
-    private OperationMapper operationMapper;
+    private OperationDao operationMapper;
     @Override
     public int insertOperation(Operation operation) {
         return operationMapper.insert(operation);

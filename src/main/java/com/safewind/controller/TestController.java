@@ -12,29 +12,17 @@ public class TestController {
 //	@Autowired
 //	private TestService testService;
 //
-	@RequestMapping("hello")
-	public String MyJsp(Model model){
-
-
+	@RequestMapping("login")
+	public String login(Model model){
 
 		return "login";
 	}
-	/**
-	 * 登录验证
-	 */
+	@RequestMapping("myCount")
+	public String myCount(Model model){
 
-	/**
-	 * 注册
-	 *
-	 */
+		return "myCount";
+	}
 
-	/**
-	 * ajax的用户名（手机）
-	 */
-
-	/**
-	 *
-	 */
 
 
 }

@@ -4,7 +4,7 @@ import com.safewind.model.Money;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MoneyMapper {
+public interface MoneyDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Money record);

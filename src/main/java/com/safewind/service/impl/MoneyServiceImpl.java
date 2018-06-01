@@ -1,6 +1,6 @@
 package com.safewind.service.impl;
 
-import com.safewind.dao.MoneyMapper;
+import com.safewind.dao.MoneyDao;
 import com.safewind.model.Money;
 import com.safewind.service.MoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MoneyServiceImpl implements MoneyService {
     @Autowired
-    private MoneyMapper moneyMapper;
+    private MoneyDao moneyMapper;
     @Override
     public int saveMoney(Money moneyNow) {
         return moneyMapper.updateByPrimaryKey(moneyNow);

@@ -4,7 +4,7 @@ import com.safewind.model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserMapper {
+public interface UserDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);

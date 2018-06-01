@@ -4,7 +4,7 @@ import com.safewind.model.Operation;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OperationMapper {
+public interface OperationDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Operation record);
