@@ -22,6 +22,11 @@ public class TestController {
 
 		return "myCount";
 	}
+	@RequestMapping("transfer")
+	public String transfer(Model model){
+
+		return "transfer";
+	}
 
 
 
