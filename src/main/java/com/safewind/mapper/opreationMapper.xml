@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.immmoc.dao.opreationMapper">
+  <resultMap id="BaseResultMap" type="com.immmoc.model.opreation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="remainsumid" jdbcType="INTEGER" property="remainsumid" />
+    <result column="oprationtype" jdbcType="INTEGER" property="oprationtype" />
+    <result column="towhoid" jdbcType="INTEGER" property="towhoid" />
+    <result column="transferaccounts" jdbcType="DECIMAL" property="transferaccounts" />
+    <result column="savemoney" jdbcType="DECIMAL" property="savemoney" />
+    <result column="drawmoney" jdbcType="DECIMAL" property="drawmoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, remainsumid, oprationtype, towhoid, transferaccounts, savemoney, drawmoney
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.immmoc.model.opreation">
+    insert into operation (id, remainsumid, oprationtype, 
+      towhoid, transferaccounts, savemoney, 
+      drawmoney)
+    values (#{id,jdbcType=INTEGER}, #{remainsumid,jdbcType=INTEGER}, #{oprationtype,jdbcType=INTEGER}, 
+      #{towhoid,jdbcType=INTEGER}, #{transferaccounts,jdbcType=DECIMAL}, #{savemoney,jdbcType=DECIMAL}, 
+      #{drawmoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.immmoc.model.opreation">
+    insert into operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="remainsumid != null">
+        remainsumid,
+      </if>
+      <if test="oprationtype != null">
+        oprationtype,
+      </if>
+      <if test="towhoid != null">
+        towhoid,
+      </if>
+      <if test="transferaccounts != null">
+        transferaccounts,
+      </if>
+      <if test="savemoney != null">
+        savemoney,
+      </if>
+      <if test="drawmoney != null">
+        drawmoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="remainsumid != null">
+        #{remainsumid,jdbcType=INTEGER},
+      </if>
+      <if test="oprationtype != null">
+        #{oprationtype,jdbcType=INTEGER},
+      </if>
+      <if test="towhoid != null">
+        #{towhoid,jdbcType=INTEGER},
+      </if>
+      <if test="transferaccounts != null">
+        #{transferaccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="savemoney != null">
+        #{savemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawmoney != null">
+        #{drawmoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.immmoc.model.opreation">
+    update operation
+    <set>
+      <if test="remainsumid != null">
+        remainsumid = #{remainsumid,jdbcType=INTEGER},
+      </if>
+      <if test="oprationtype != null">
+        oprationtype = #{oprationtype,jdbcType=INTEGER},
+      </if>
+      <if test="towhoid != null">
+        towhoid = #{towhoid,jdbcType=INTEGER},
+      </if>
+      <if test="transferaccounts != null">
+        transferaccounts = #{transferaccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="savemoney != null">
+        savemoney = #{savemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawmoney != null">
+        drawmoney = #{drawmoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.immmoc.model.opreation">
+    update operation
+    set remainsumid = #{remainsumid,jdbcType=INTEGER},
+      oprationtype = #{oprationtype,jdbcType=INTEGER},
+      towhoid = #{towhoid,jdbcType=INTEGER},
+      transferaccounts = #{transferaccounts,jdbcType=DECIMAL},
+      savemoney = #{savemoney,jdbcType=DECIMAL},
+      drawmoney = #{drawmoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
