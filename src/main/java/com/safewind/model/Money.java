@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class Money {
     private Integer id;
 
-    private Integer userid;
+    private Integer userId;
 
-    private BigDecimal remainsum;
+    private BigDecimal remainSum;
 
     public Integer getId() {
         return id;
@@ -17,19 +17,19 @@ public class Money {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public BigDecimal getRemainsum() {
-        return remainsum;
+    public BigDecimal getRemainSum() {
+        return remainSum;
     }
 
-    public void setRemainsum(BigDecimal remainsum) {
-        this.remainsum = remainsum;
+    public void setRemainSum(BigDecimal remainSum) {
+        this.remainSum = remainSum;
     }
 }

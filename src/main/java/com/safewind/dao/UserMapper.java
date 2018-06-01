@@ -1,8 +1,9 @@
 package com.safewind.dao;
 
-
 import com.safewind.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

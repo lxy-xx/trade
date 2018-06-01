@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.safewind.dao.OperationMapper">
+  <resultMap id="BaseResultMap" type="com.safewind.model.Operation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="remain_sum_id" jdbcType="INTEGER" property="remainSumId" />
+    <result column="operation_type" jdbcType="INTEGER" property="operationType" />
+    <result column="to_who_id" jdbcType="INTEGER" property="toWhoId" />
+    <result column="transfer_accounts" jdbcType="DECIMAL" property="transferAccounts" />
+    <result column="save_money" jdbcType="DECIMAL" property="saveMoney" />
+    <result column="draw_money" jdbcType="DECIMAL" property="drawMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, remain_sum_id, operation_type, to_who_id, transfer_accounts, save_money, draw_money
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.safewind.model.Operation">
+    insert into operation (id, remain_sum_id, operation_type, 
+      to_who_id, transfer_accounts, save_money, 
+      draw_money)
+    values (#{id,jdbcType=INTEGER}, #{remainSumId,jdbcType=INTEGER}, #{operationType,jdbcType=INTEGER}, 
+      #{toWhoId,jdbcType=INTEGER}, #{transferAccounts,jdbcType=DECIMAL}, #{saveMoney,jdbcType=DECIMAL}, 
+      #{drawMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.safewind.model.Operation">
+    insert into operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="remainSumId != null">
+        remain_sum_id,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="toWhoId != null">
+        to_who_id,
+      </if>
+      <if test="transferAccounts != null">
+        transfer_accounts,
+      </if>
+      <if test="saveMoney != null">
+        save_money,
+      </if>
+      <if test="drawMoney != null">
+        draw_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="remainSumId != null">
+        #{remainSumId,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="toWhoId != null">
+        #{toWhoId,jdbcType=INTEGER},
+      </if>
+      <if test="transferAccounts != null">
+        #{transferAccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="saveMoney != null">
+        #{saveMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawMoney != null">
+        #{drawMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.safewind.model.Operation">
+    update operation
+    <set>
+      <if test="remainSumId != null">
+        remain_sum_id = #{remainSumId,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="toWhoId != null">
+        to_who_id = #{toWhoId,jdbcType=INTEGER},
+      </if>
+      <if test="transferAccounts != null">
+        transfer_accounts = #{transferAccounts,jdbcType=DECIMAL},
+      </if>
+      <if test="saveMoney != null">
+        save_money = #{saveMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawMoney != null">
+        draw_money = #{drawMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.safewind.model.Operation">
+    update operation
+    set remain_sum_id = #{remainSumId,jdbcType=INTEGER},
+      operation_type = #{operationType,jdbcType=INTEGER},
+      to_who_id = #{toWhoId,jdbcType=INTEGER},
+      transfer_accounts = #{transferAccounts,jdbcType=DECIMAL},
+      save_money = #{saveMoney,jdbcType=DECIMAL},
+      draw_money = #{drawMoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

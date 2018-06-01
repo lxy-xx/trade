@@ -1,8 +1,9 @@
 package com.safewind.dao;
 
-
 import com.safewind.model.Money;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MoneyMapper {
     int deleteByPrimaryKey(Integer id);
 
