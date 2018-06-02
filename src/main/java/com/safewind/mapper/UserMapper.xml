@@ -11,6 +11,12 @@
   <sql id="Base_Column_List">
     id, real_name, phone_number, password, email
   </sql>
+  <select id="selectByRealName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Colume_List"/>
+    from user
+    where real_name=#{name,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
