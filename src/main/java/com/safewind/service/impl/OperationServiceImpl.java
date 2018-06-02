@@ -1,6 +1,7 @@
 package com.safewind.service.impl;
 
 import com.safewind.dao.OperationDao;
+import com.safewind.model.Money;
 import com.safewind.model.Operation;
 import com.safewind.service.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public Operation selectOperation(Integer remainSumId) {
-       // Money money=new User
-        return operationMapper.selectByPrimaryKey(remainSumId);
+    public Operation selectOperation(Integer Id) {
+      Money money=new MoneyServiceImpl().getMoneyNow(Id);
+        return operationMapper.selectByPrimaryKey(money.getId());
     }
 }

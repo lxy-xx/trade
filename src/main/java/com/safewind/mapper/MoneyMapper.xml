@@ -13,7 +13,7 @@
     select 
     <include refid="Base_Column_List" />
     from money
-    where id = #{id,jdbcType=INTEGER}
+    where  user_id = #{ user_id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from money
@@ -64,8 +64,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.safewind.model.Money">
     update money
-    set user_id = #{userId,jdbcType=INTEGER},
+    set
       remain_sum = #{remainSum,jdbcType=DECIMAL}
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>
