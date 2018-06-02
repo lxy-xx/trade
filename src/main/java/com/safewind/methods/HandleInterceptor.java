@@ -34,6 +34,11 @@ public class HandleInterceptor implements Filter {
         String username=UnAndPwd[0];
         String password=entryption.md5prefix(new TimeSeed().getCurrentTime(),UnAndPwd[1]);
         //数据库比较，加入session，跳转页面
+
+
+
+        // Filter 只是链式处理，请求依然转发到目的地址。
+        filterChain.doFilter(request, response);
     }
 
     @Override
