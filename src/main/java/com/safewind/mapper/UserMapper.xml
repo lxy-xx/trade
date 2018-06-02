@@ -13,7 +13,7 @@
   </sql>
   <select id="selectByRealName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
-    <include refid="Base_Colume_List"/>
+    <include refid="Base_Column_List"/>
     from user
     where real_name=#{name,jdbcType=VARCHAR}
   </select>

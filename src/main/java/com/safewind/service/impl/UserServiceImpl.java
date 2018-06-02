@@ -2,7 +2,6 @@ package com.safewind.service.impl;
 
 import com.safewind.dao.UserDao;
 import com.safewind.methods.Entryption;
-import com.safewind.methods.TimeSeed;
 import com.safewind.model.User;
 import com.safewind.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService{
 @Autowired
 private UserDao userDao;
+
     @Override
     public boolean recheck(String realName) {
         User user=userDao.selectByRealName(realName);
@@ -24,14 +24,13 @@ private UserDao userDao;
     }
 
     @Override
-    public boolean longin(String realname,String md5Pwd) {//md5Pwd为前台发过来加密的密码,entire为后台加密的密码
+    public User longin(String username, String password, String prefix) {//password为前台发过来加密的密码,entire为后台加密的密码
+        User user=userDao.selectByRealName(username);
         Entryption entryption=new Entryption();
-        TimeSeed timeSeed = new TimeSeed();
-        User user=userDao.selectByRealName(realname);
-        String entirePwd=entryption.md5prefix(timeSeed.getPreviousTime(),user.getPassword());
-        if(entirePwd.equals(md5Pwd))
-            return true;
-        return false;
+        String entire= entryption.md5prefix(prefix,user.getPassword());
+        if(entire.equals(password))
+           return user;
+        return null;
     }
 
     @Override
