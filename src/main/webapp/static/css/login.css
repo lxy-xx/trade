@@ -208,7 +208,7 @@ li.twt {
     transition: .5s all;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
     width: 93.4%;
     margin-bottom: 20px;
     padding: 10px;
@@ -258,6 +258,38 @@ input[type="text"], input[type="password"] {
     text-decoration: none;
 }
 
+.send-button input[type="button"] {
+    width: 60%;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 100;
+    background-color: transparent;
+    color: #CCC;
+    border: 1px solid rgba(238, 238, 238, 0.41);
+    border-width: thin;
+    cursor: pointer;
+    outline: none;
+    transition:0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+    -ms-transition:0.5s all;
+    text-decoration: none;
+}
+
+/*--w3layouts--*/
+/*--agileits--*/
+.send-button input[type="button"]:hover {
+    background-color: #000;
+    border: 1px solid #FFF;
+    color: #FFF;
+    transition:0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+    -ms-transition:0.5s all;
+    text-decoration: none;
+}
 .login a {
     color: #CCC;
 }
@@ -481,6 +513,10 @@ input[type="text"], input[type="password"] {
         padding: 35px;
     }
     .send-button input[type="submit"] {
+        width: 50%;
+        padding: 8px 0;
+    }
+    .send-button input[type="button"] {
         width: 50%;
         padding: 8px 0;
     }

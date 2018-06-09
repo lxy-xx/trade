@@ -4,6 +4,8 @@ package com.safewind.methods;
 import com.safewind.model.User;
 import com.safewind.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
@@ -17,7 +19,7 @@ import java.util.Date;
  * Created by zhh on 2018/6/1.
  */
 public class HandleInterceptor implements Filter {
-    @Autowired private UserService userService;
+    @Autowired private UserService userService ;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -28,6 +30,13 @@ public class HandleInterceptor implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        ServletContext sc = request.getSession().getServletContext();
+        XmlWebApplicationContext cxt = (XmlWebApplicationContext)WebApplicationContextUtils.getWebApplicationContext(sc);
+
+        if(cxt != null && cxt.getBean("userService") != null && userService == null)
+            userService = (UserService) cxt.getBean("userService");
+
         HttpSession session = request.getSession();
         Cookie[] cookies = request.getCookies();
         CookieUse cookieUse = new CookieUse();
@@ -45,7 +54,12 @@ public class HandleInterceptor implements Filter {
         if (null != user) {
             session.setAttribute("currentUser", user);
             response.sendRedirect("MyCount");
+            request.getRequestDispatcher("loginToHome2").forward(request,response);
+        }else {
+            filterChain.doFilter(request,response);
         }
+
+
     }
 
     @Override

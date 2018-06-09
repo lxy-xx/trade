@@ -32,7 +32,7 @@ public class RegisterController {
         request.setCharacterEncoding("utf-8");
         boolean bl=userService.recheck(username);
         if(true==bl)
-            return "恭喜您，可以使用此昵称！";
-        return "这个姓名已经被注册啦~";
+            return "{\"msg\":\"1\"}";
+        return "{\"msg\":\"-1\"}";
     }
 }

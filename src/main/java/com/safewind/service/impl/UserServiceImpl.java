@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 /**
  * Created by zhh on 2018/6/2.
  */
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
 @Autowired
 private UserDao userDao;
 
     @Override
-    public boolean recheck(String realName) {
-        User user=userDao.selectByRealName(realName);
+    public boolean recheck(String phoneNumber) {
+        User user=userDao.selectByPhoneNumber(phoneNumber);
         if(null==user)
             return true;
         return false;
@@ -25,8 +25,11 @@ private UserDao userDao;
 
     @Override
     public User longin(String username, String password, String prefix) {//password为前台发过来加密的密码,entire为后台加密的密码
-        User user=userDao.selectByRealName(username);
+        User user=userDao.selectByPhoneNumber(username);
         Entryption entryption=new Entryption();
+        if(user==null){
+            return null;
+        }
         String entire= entryption.md5prefix(prefix,user.getPassword());
         if(entire.equals(password))
            return user;

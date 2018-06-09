@@ -24,7 +24,9 @@ import java.util.Date;
  */
 @Controller
 public class LoginController {
+
     @Autowired private UserService userService;
+
     @RequestMapping(value="login")
     public String login(Model model){
         Date date=new Date();
@@ -49,4 +51,12 @@ public class LoginController {
             model.addAttribute("errorInformation","用户名或密码错误！");
         return "login";}
     }
+
+    @RequestMapping(value="loginToHome2")
+    public String loginToHome2() {
+
+        return "MyCount";
+
+    }
+
 }
