@@ -45,32 +45,31 @@
 
     <div class="login w3layouts agileits">
         <h2>登 录</h2>
-        <form action="/login" method="post">
-            <input type="text" Name="phoneNumber" placeholder="用户名/手机号" required="">
-            <input type="password" Name="password" placeholder="密码" required="">
+        <form action="${pageContext.request.contextPath}/loginToHome" method="post" onsubmit="return send();">
+            <input type="text" Name="username" placeholder="用户名/手机号" required="">
+            <input type="password" Name="password" id="pwd" placeholder="密码" required="">
+            <input type="hidden" name="auto" value="0" id="auto">
+            <ul class="tick w3layouts agileits">
+                <li>
+                    <input type="checkbox" id="brand1" value="" onchange="$('#auto').val(1-$('#auto').val());">
+                    <label for="brand1"><span></span>记住我</label>
+                </li>
+            </ul>
+            <div class="send-button w3layouts agileits">
+                <input type="submit" value="登 录"><br/>
+                <span style="color: white" id="">${errorInformation}</span>
+            </div>
+            <a href="#">记住密码?</a>
         </form>
-        <ul class="tick w3layouts agileits">
-            <li>
-                <input type="checkbox" id="brand1" value="">
-                <label for="brand1"><span></span>记住我</label>
-            </li>
-        </ul>
-        <div class="send-button w3layouts agileits">
-            <form>
-                <input type="submit" value="登 录">
-            </form>
-        </div>
-        <a href="#">记住密码?</a>
-
         <div class="clear"></div>
     </div>
     <div class="register w3layouts agileits">
         <h2>注 册</h2>
-        <form action="#" method="post" onsubmit="return false;">
+        <form action="#" method="post" onsubmit="return checked();">
             <input type="number" maxlength="11" minlength="11" Name="phoneNumber" id="id" placeholder="手机号码"
                    required="required">
-            <input type="text" Name="realName" placeholder="姓名" required="required">
-            <input type="email" Name="email" placeholder="邮箱" required="required">
+            <input type="text" Name="realName" placeholder="姓名" required="required" id="realName">
+            <input type="email" Name="email" placeholder="邮箱" required="required" id="email">
             <input type="password" Name="password" id="p1" placeholder="密码" required="required">
             <input type="password" Name="password2" id="p2" placeholder="确认密码" required="required">
             <div class="send-button w3layouts agileits">
@@ -92,18 +91,55 @@
 
     var idFlag = false;
     var pwdFlag = false;
-    function checked() {
+    var prefix = '${prefix}'
 
-        return idFlag&&pwdFlag;
+
+    function checked() {
+        if (idFlag && pwdFlag) {
+            var realName = $("#realName").val();
+            var phoneNumber = $("#id").val();
+            var password = $("#p1").val();
+            var email = $("#email").val();
+            $.ajax({
+                type: "GET",
+                url: "${pageContext.request.contextPath}/register",
+                dataType: 'json',
+                data: {
+                    realName: realName,
+                    phoneNumber: phoneNumber,
+                    password: password,
+                    email: email
+                },
+                success: function (data) {
+                    var result = data['msg'];
+                    if ("1" == result) {
+                        alert("注册成功～");
+                    } else {
+                        alert("注册失败");
+                    }
+                }
+
+            });
+
+        }
+        return false;
     }
-    $("#p2").blur(function(){
+
+    function send() {
+        alert($.md5($("#pwd").val()));
+        var pwd = prefix + $.md5($("#pwd").val());
+        $("#pwd").val($.md5(pwd));
+        return true;
+    }
+
+    $("#p2").blur(function () {
         var p1 = $("#p1").val();
         var p2 = $("#p2").val();
-        if(p1==p2){
-            pwdFlag=true;
+        if (p1 == p2) {
+            pwdFlag = true;
             $("#pwdTag").html("");
-        }else {
-            pwdFlag=false;
+        } else {
+            pwdFlag = false;
             $("#pwdTag").html("两次密码不一致～");
         }
     });
@@ -118,11 +154,11 @@
                 data: {username: id},
                 success: function (data) {
                     var result = data['msg'];
-                    if("1"==result){
-                        idFlag=true;
+                    if ("1" == result) {
+                        idFlag = true;
                         $("#idTag").html("恭喜您，可以使用此昵称！");
-                    }else {
-                        idFlag=false;
+                    } else {
+                        idFlag = false;
                         $("#idTag").html("这个姓名已经被注册啦~");
                     }
                 }

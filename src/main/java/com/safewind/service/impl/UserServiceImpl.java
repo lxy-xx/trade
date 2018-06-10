@@ -38,6 +38,8 @@ private UserDao userDao;
 
     @Override
     public boolean register(User user) {
+        Entryption entry = new Entryption();
+        user.setPassword(entry.md5password(user.getPassword()));
         userDao.insert(user);
         return true;
     }

@@ -21,17 +21,18 @@ public class RegisterController {
     UserService userService;
     @Autowired private UserDao userDao;
     @RequestMapping("register")
+    @ResponseBody
     public String register(User user){
-        if(true==userService.register(user))
-            return "";//注册成功网页
-        return "";//失败页面
+        if(userService.register(user))
+            return "{\"msg\":\"1\"}";//注册成功网页
+        return "{\"msg\":\"-1\"}";//失败页面
     }
     @RequestMapping("rechecked")//查询是否存在这个
     @ResponseBody
     public String recheked(@Param("username") String username, HttpServletRequest request) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         boolean bl=userService.recheck(username);
-        if(true==bl)
+        if(bl)
             return "{\"msg\":\"1\"}";
         return "{\"msg\":\"-1\"}";
     }

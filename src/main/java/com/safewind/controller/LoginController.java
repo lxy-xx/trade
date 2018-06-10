@@ -28,32 +28,38 @@ public class LoginController {
     @Autowired private UserService userService;
 
     @RequestMapping(value="login")
-    public String login(Model model){
+    public String login(HttpServletRequest request,Model model){
         Date date=new Date();
         long datetime=date.getTime();
         model.addAttribute("prefix",String.valueOf(datetime));
+        request.getSession().setAttribute("prefix",String.valueOf(datetime));
         return "login";
     }
     @RequestMapping(value="loginToHome")
     public String loginToHome(@Param("username") String username, @Param("password") String password, Model model, HttpServletResponse response
-            , HttpServletRequest request) throws UnsupportedEncodingException {
+            , HttpServletRequest request,int auto) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         HttpSession session=request.getSession();
         User user=null;
-        CookieUse cookieUse=new CookieUse();
         user=userService.longin(username,password,session.getAttribute("prefix").toString());
         if(null!=user) {
-            cookieUse.saveCookie(user.getRealName(),user.getPassword());
-            model.addAttribute("currentUser", user);
-
-            return "MyCount";
+            if (auto==1) {
+                CookieUse cookieUse = new CookieUse();
+                cookieUse.saveCookie(user.getRealName(), user.getPassword());
+            }
+                model.addAttribute("currentUser", user);
+            return "myCount";
         }else{
             model.addAttribute("errorInformation","用户名或密码错误！");
-        return "login";}
+            return "login";
+        }
     }
 
-    @RequestMapping(value="loginToHome2")
-    public String loginToHome2() {
+
+
+
+    @RequestMapping(value="loginToHome")
+    public String loginToHome() {
 
         return "MyCount";
 
