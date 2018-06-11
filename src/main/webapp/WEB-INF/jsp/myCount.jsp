@@ -38,10 +38,10 @@
 <div class="container w3layouts agileits">
 
     <div class="login w3layouts agileits">
-        <h2>XXX 用户，您好：</h2>
+        <h2>${user.realName} 用户，您好：</h2>
 
-        <input type="text" Name="phoneNumber" value="您当前的余额为：  ￥300.00" disabled="disabled">
-        <input type="text" Name="phoneNumber" value="当前七日年化率：  　3.95%" disabled="disabled">
+        <input type="text" Name="phoneNumber" value="您当前的余额为：  ￥${money.remainSum}" disabled="disabled">
+        <input type="text" Name="phoneNumber" value="当前七日年化率：  　${rate}" disabled="disabled">
 
         <div class="clear"></div>
     </div>

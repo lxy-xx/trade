@@ -84,4 +84,11 @@ public class MoneyServiceImpl implements MoneyService {
         return moneyDao.selectByPrimaryKey(UserId);
     }
 
+    @Override
+    public String getInterestRates() {
+        String rates = moneyDao.getInterestRates().toString();
+        System.out.println(rates);
+        return rates;
+    }
+
 }

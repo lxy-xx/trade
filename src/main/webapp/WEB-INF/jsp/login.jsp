@@ -126,7 +126,6 @@
     }
 
     function send() {
-        alert($.md5($("#pwd").val()));
         var pwd = prefix + $.md5($("#pwd").val());
         $("#pwd").val($.md5(pwd));
         return true;

@@ -53,8 +53,7 @@ public class HandleInterceptor implements Filter {
         User user = userService.longin(username, password, String.valueOf(datetime));
         if (null != user) {
             session.setAttribute("currentUser", user);
-            response.sendRedirect("MyCount");
-            request.getRequestDispatcher("loginToHome2").forward(request,response);
+            response.sendRedirect("myCount");
         }else {
             filterChain.doFilter(request,response);
         }

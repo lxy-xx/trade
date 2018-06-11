@@ -38,12 +38,12 @@
 <div class="container w3layouts agileits">
 
     <div class="login w3layouts agileits">
-        <h2>XXX 用户，您好：</h2>
-        <form>
-            <input type="text" value="您当前的余额为：  ￥300.00" disabled="disabled">
-            <input type="text" Name="toRealName" value="" placeholder="转账金额">
-            <input type="text" Name="toUserName" value="" placeholder="对方账户">
-            <input type="text" Name="toRealName" value="" placeholder="对方姓名">
+        <h2>${sessionScope.user.realName} 用户，您好：</h2>
+        <form method="post" onsubmit="return submitDo();">
+            <input type="text" value="您当前的余额为：  ￥${money.remainSum}" disabled="disabled" id="max">
+            <input type="text" Name="money" value="" placeholder="转账金额" id="money" onchange="check();">
+            <input type="text" Name="toId" value="" placeholder="对方账户" id="toId" required="required">
+            <input type="text" Name="toRealName" value="" placeholder="对方姓名" id="toRealName" required="required">
             <div class="send-button w3layouts agileits">
                 <form>
                     <input type="submit" value="确认转账">
@@ -71,6 +71,38 @@
 </div>
 
 
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"></script>
+<script type="application/javascript">
+    function check() {
+        var max = parseFloat($("#max").val().split('￥')[1]);
+        var money = $("#money").val();
+        $("#money").val(money<max?money:max);
+    }
+    function submitDo(){
+
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/transferMoney",
+            dataType: 'json',
+            data: {
+                money: $("#money").val(),
+                toId: $("#toId").val(),
+                toRealName: $("#toRealName").val()
+            },
+            success: function (data) {
+                var result = data['msg'];
+                if ("1" == result) {
+                    $("#idTag").html("转账成功～");
+                } else {
+                    $("#idTag").html("转账失败～");
+                }
+            }
+
+        });
+        return false;
+    }
+</script>
 </body>
 <!-- //Body -->
 

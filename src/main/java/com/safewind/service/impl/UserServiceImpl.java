@@ -3,6 +3,7 @@ package com.safewind.service.impl;
 import com.safewind.dao.UserDao;
 import com.safewind.methods.Entryption;
 import com.safewind.model.User;
+import com.safewind.service.MoneyService;
 import com.safewind.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService{
 @Autowired
 private UserDao userDao;
+@Autowired
+private MoneyService moneyService;
 
     @Override
     public boolean recheck(String phoneNumber) {

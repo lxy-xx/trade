@@ -12,4 +12,5 @@ public interface MoneyService {
     String saveMoney(BigDecimal moneyNow,Integer userId);//存，取，得到
     String transferMoney(BigDecimal money, Integer userId, Integer toId);
     Money getMoneyNow(Integer UserId);
+    String getInterestRates();
 }

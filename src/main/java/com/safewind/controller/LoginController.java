@@ -1,7 +1,9 @@
 package com.safewind.controller;
 
 import com.safewind.methods.CookieUse;
+import com.safewind.model.Money;
 import com.safewind.model.User;
+import com.safewind.service.MoneyService;
 import com.safewind.service.UserService;
 import com.sun.deploy.net.HttpResponse;
 import org.apache.ibatis.annotations.Param;
@@ -27,6 +29,9 @@ public class LoginController {
 
     @Autowired private UserService userService;
 
+    @Autowired
+    private MoneyService moneyService;
+
     @RequestMapping(value="login")
     public String login(HttpServletRequest request,Model model){
         Date date=new Date();
@@ -36,7 +41,7 @@ public class LoginController {
         return "login";
     }
     @RequestMapping(value="loginToHome")
-    public String loginToHome(@Param("username") String username, @Param("password") String password, Model model, HttpServletResponse response
+    public String loginToHome(@Param("username") String username, @Param("password") String password, Model model
             , HttpServletRequest request,int auto) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         HttpSession session=request.getSession();
@@ -47,8 +52,8 @@ public class LoginController {
                 CookieUse cookieUse = new CookieUse();
                 cookieUse.saveCookie(user.getRealName(), user.getPassword());
             }
-                model.addAttribute("currentUser", user);
-            return "myCount";
+            session.setAttribute("currentUser", user);
+            return "redirect:myCount";
         }else{
             model.addAttribute("errorInformation","用户名或密码错误！");
             return "login";
@@ -58,10 +63,15 @@ public class LoginController {
 
 
 
-    @RequestMapping(value="loginToHome")
-    public String loginToHome() {
-
-        return "MyCount";
+    @RequestMapping(value="myCount")
+    public String myCount(HttpSession session,Model model) {
+        User user = (User) session.getAttribute("currentUser");
+        String rate = moneyService.getInterestRates();
+        Money money = moneyService.getMoneyNow(user.getId());
+        model.addAttribute("rate",rate);
+        model.addAttribute("user",user);
+        model.addAttribute("money",money);
+        return "myCount";
 
     }
 
