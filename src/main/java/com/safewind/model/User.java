@@ -50,4 +50,15 @@ public class User {
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        User user = (User) obj;
+        return this.getId().equals(user.getId()) && this.getEmail().equals(user.getEmail()) && this.getPhoneNumber().equals(user.getPhoneNumber()) && this.getRealName().equals(user.getRealName()) && this.getPassword().equals(user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return realName.hashCode();
+    }
 }

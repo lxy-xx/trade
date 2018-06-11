@@ -13,4 +13,5 @@ public interface MoneyService {
     String transferMoney(BigDecimal money, Integer userId, Integer toId);
     Money getMoneyNow(Integer UserId);
     String getInterestRates();
+    boolean initMoney(Integer UserId);
 }

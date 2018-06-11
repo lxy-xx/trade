@@ -7,6 +7,8 @@ import com.safewind.service.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by qt on 2018/6/2.
  */
@@ -25,8 +27,8 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public Operation selectOperation(Integer Id) {
+    public List<Operation> selectOperation(Integer Id) {
       Money money=new MoneyServiceImpl().getMoneyNow(Id);
-        return operationMapper.selectByPrimaryKey(money.getId());
+        return operationMapper.findAll(money.getId());
     }
 }

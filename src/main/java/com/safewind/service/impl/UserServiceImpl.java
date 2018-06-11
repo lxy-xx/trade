@@ -46,4 +46,20 @@ private MoneyService moneyService;
         userDao.insert(user);
         return true;
     }
+
+    @Override
+    public boolean recheckByNameAndTel(String phoneNumber, String realname) {
+        User user=userDao.selectByPhoneNumber(phoneNumber);
+        User user1=userDao.selectByRealName(realname);
+        if(user.equals(user1))
+            return true;
+        return false;
+
+    }
+
+    @Override
+    public User getUserMes(String tel) {
+        User user=userDao.selectByPhoneNumber(tel);
+        return user;
+    }
 }

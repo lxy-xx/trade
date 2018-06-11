@@ -91,4 +91,14 @@ public class MoneyServiceImpl implements MoneyService {
         return rates;
     }
 
+    @Override
+    public boolean initMoney(Integer userId) {
+        Money money=new Money();
+        money.setRemainSum(new BigDecimal(0));
+        money.setUserId(userId);
+        if (moneyDao.insert(money)==1)
+            return true;
+        return false;
+    }
+
 }

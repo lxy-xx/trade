@@ -17,5 +17,6 @@ public interface UserDao {
 
     int updateByPrimaryKey(User record);
 
-    User selectByPhoneNumber(String name);
+    User selectByPhoneNumber(String tel);
+    User selectByRealName(String name);
 }

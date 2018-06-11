@@ -3,6 +3,8 @@ package com.safewind.dao;
 import com.safewind.model.Operation;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OperationDao {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +18,5 @@ public interface OperationDao {
     int updateByPrimaryKeySelective(Operation record);
 
     int updateByPrimaryKey(Operation record);
+    List<Operation> findAll(Integer id);
 }
