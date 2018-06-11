@@ -41,7 +41,9 @@ public class HandleInterceptor implements Filter {
         Cookie[] cookies = request.getCookies();
         CookieUse cookieUse = new CookieUse();
         Entryption entryption = new Entryption();
-        Cookie cookie = cookieUse.selectCookie(cookies);
+        Cookie cookie=null;
+        if(cookies!=null)
+          cookie = cookieUse.selectCookie(cookies);
         String[] UnAndPwd = new String[2];
         if (null != cookie)
             UnAndPwd = cookieUse.analizeCookie(cookie.getValue());
