@@ -14,10 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
@@ -43,15 +40,18 @@ public class LoginController {
     }
     @RequestMapping(value="loginToHome")
     public String loginToHome(@Param("username") String username, @Param("password") String password, Model model
-            , HttpServletRequest request,int auto) throws UnsupportedEncodingException {
+            , HttpServletRequest request,HttpServletResponse response,int auto) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         HttpSession session=request.getSession();
         User user=null;
         user=userService.longin(username,password,session.getAttribute("prefix").toString());
+        Cookie cookie;
         if(null!=user) {
             if (auto==1) {
                 CookieUse cookieUse = new CookieUse();
-                cookieUse.saveCookie(user.getRealName(), user.getPassword());
+                cookie=cookieUse.saveCookie(user.getPhoneNumber(), user.getPassword());
+                cookie.setMaxAge(60*60*24);
+                response.addCookie(cookie);
             }
             session.setAttribute("currentUser", user);
             return "redirect:myCount";
