@@ -75,5 +75,16 @@ public class LoginController {
         return "myCount";
 
     }
+    @RequestMapping(value="history")
+    public String history(HttpSession session,Model model) {
+        User user = (User) session.getAttribute("currentUser");
+        String rate = moneyService.getInterestRates();
+        Money money = moneyService.getMoneyNow(user.getId());
+        model.addAttribute("rate",rate);
+        model.addAttribute("user",user);
+        model.addAttribute("money",money);
+        return "myCount";
+
+    }
 
 }

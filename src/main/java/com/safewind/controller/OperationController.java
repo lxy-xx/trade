@@ -28,8 +28,7 @@ public class OperationController {
     @ResponseBody
     public List<Operation> getOprations( HttpSession session){
         User user = (User) session.getAttribute("currentUser");
-        Money money=new Money();
-        money=moneyService.getMoneyNow(user.getId());
+        Money money=moneyService.getMoneyNow(user.getId());
         return operationService.selectOperation(money.getId());//根据session得到所有的操作记录
     }
 }

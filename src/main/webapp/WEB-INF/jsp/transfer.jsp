@@ -93,9 +93,10 @@
             success: function (data) {
                 var result = data['msg'];
                 if ("1" == result) {
-                    $("#idTag").html("转账成功～");
+                    alert("转账成功～");
+                    window.location.reload();
                 } else {
-                    $("#idTag").html("转账失败～");
+                    alert("账号错误或账号与真实姓名不匹配～");
                 }
             }
 

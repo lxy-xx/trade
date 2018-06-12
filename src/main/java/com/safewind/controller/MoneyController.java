@@ -44,7 +44,7 @@ public class MoneyController {
         User user = (User) session.getAttribute("currentUser");
         //User是当前用户，要传进来的真实姓名和账号匹配才可以转账。
         boolean result = true;
-        if (!userService.recheckByNameAndTel(toRealName,toId))
+        if (!userService.recheckByNameAndTel(toId,toRealName))
             result=false;
        //return moneyService.transferMoney(money,userId,toId);
        //转多少，谁，给谁。

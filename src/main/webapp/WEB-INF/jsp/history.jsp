@@ -50,17 +50,8 @@
 
         <div class="send-button w3layouts agileits">
 
-                <input type="button" value="存钱">
-                <br/>
-                <br/>
-                <input type="button" value="取钱">
-                <br/>
-                <br/>
-                <input type="button" value="账户汇款" onclick="window.location.href='${pageContext.request.contextPath}/transfer';">
-                <br/>
-                <br/>
-                <!--<input type="submit" value="历史记录" onclick="window.location.href='history';">-->
-                <input type="button" value="文件上传" onclick="window.location.href='upLoad';">
+            <input type="submit" value="返回主页" onclick="window.location.href='myCount';">
+
         </div>
         <div class="clear"></div>
     </div>

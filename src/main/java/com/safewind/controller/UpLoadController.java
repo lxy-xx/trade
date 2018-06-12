@@ -16,16 +16,17 @@ import java.util.Date;
  */
 @Controller
 public class UpLoadController {
-    @RequestMapping(value = "/uploadform",method = RequestMethod.GET)
+    @RequestMapping(value = "/upLoad",method = RequestMethod.GET)
     public String uploadForm(){
-        return "uploadForm";
+        return "upLoad";
     }
 
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/upLoadDo",method = RequestMethod.POST)
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {
 
         String path = request.getSession().getServletContext().getRealPath("upload");
-        String fileName = new Date().getTime()+".jpg";
+        System.out.println(path);
+        String fileName = new Date().getTime()+"+"+file.getName();
         File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();

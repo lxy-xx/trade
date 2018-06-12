@@ -50,8 +50,10 @@ private MoneyService moneyService;
     @Override
     public boolean recheckByNameAndTel(String phoneNumber, String realname) {
         User user=userDao.selectByPhoneNumber(phoneNumber);
+
         User user1=userDao.selectByRealName(realname);
-        if(user.equals(user1))
+
+        if(user!=null&&user1!=null&&user.getId()==user1.getId())
             return true;
         return false;
 
