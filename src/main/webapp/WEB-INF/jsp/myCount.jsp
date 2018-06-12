@@ -60,7 +60,7 @@
                 <br/>
                 <br/>
                 <!--<input type="submit" value="历史记录" onclick="window.location.href='history';">-->
-                <input type="button" value="文件上传" onclick="window.location.href='upLoad';">
+                <input type="button" value="文件上传" onclick="window.location.href='upLoad';" >
         </div>
         <div class="clear"></div>
     </div>

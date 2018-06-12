@@ -26,7 +26,9 @@ public class UpLoadController {
 
         String path = request.getSession().getServletContext().getRealPath("upload");
         System.out.println(path);
-        String fileName = new Date().getTime()+"+"+file.getName();
+        String fileName1=file.getOriginalFilename();
+        String suffix=fileName1.substring(fileName1.indexOf(".")+1);
+        String fileName = new Date().getTime()+"."+suffix;
         File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();
@@ -37,8 +39,9 @@ public class UpLoadController {
             file.transferTo(targetFile);
         } catch (Exception e) {
             e.printStackTrace();
+            return "uploadFail";
         }
         model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
-        return "uploadResult";
+        return "uploadSuccess";
     }
 }

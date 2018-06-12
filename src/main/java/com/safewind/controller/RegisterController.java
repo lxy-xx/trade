@@ -30,7 +30,7 @@ public class RegisterController {
         try {
             if (userService.register(user)) {
                 User user1 = new User();
-                user1 = userService.getUserMes(user.getRealName());
+                user1 = userService.getUserMes(user.getPhoneNumber());
                 moneyService.initMoney(user1.getId());//创建0钱表
                 return "{\"msg\":\"1\"}";//注册成功网页
             }

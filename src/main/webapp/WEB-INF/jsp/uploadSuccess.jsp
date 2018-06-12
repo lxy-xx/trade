@@ -43,22 +43,15 @@
 
 <div class="container w3layouts agileits">
 
-    <div class="login w3layouts agileits">
-        <h2>${sessionScope.currentUser.realName} 用户，您好：</h2>
-        <form action="${pageContext.request.contextPath}/upLoadDo" method="post" enctype="multipart/form-data">
-            <input type="file" Name="file">
-            <input type="submit">
-        </form>
-        <div class="clear"></div>
-    </div>
-    <div class="register w3layouts agileits">
-        <h2>请选择您的操作：</h2>
 
+    <div class="register w3layouts agileits">
+        <h2>上传成功，恭喜哈！</h2>
         <div class="send-button w3layouts agileits">
 
             <input type="submit" value="返回主页" onclick="window.location.href='myCount';">
         </div>
         <div class="clear"></div>
+
     </div>
 
     <div class="clear"></div>
