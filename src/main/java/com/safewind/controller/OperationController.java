@@ -26,7 +26,7 @@ public class OperationController {
     OperationService operationService;
     @RequestMapping("getOperationMse")
     @ResponseBody
-    public List<Operation> getOprations(HttpSession session){
+    public List<Operation> getOprations( HttpSession session){
         User user = (User) session.getAttribute("currentUser");
         Money money=new Money();
         money=moneyService.getMoneyNow(user.getId());

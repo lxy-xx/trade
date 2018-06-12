@@ -27,14 +27,17 @@ public class RegisterController {
     @ResponseBody
     @Transactional//事务处理
     public String register(User user){
-        if(userService.register(user))
-        {
-            User user1=new User();
-            user1=userService.getUserMes(user.getRealName());
-            moneyService.initMoney(user1.getId());//创建0钱表
-            return "{\"msg\":\"1\"}";//注册成功网页
+        try {
+            if (userService.register(user)) {
+                User user1 = new User();
+                user1 = userService.getUserMes(user.getRealName());
+                moneyService.initMoney(user1.getId());//创建0钱表
+                return "{\"msg\":\"1\"}";//注册成功网页
+            }
+            return "{\"msg\":\"-1\"}";//失败页面
+        }catch (Exception e){
+            return "{\"msg\":\"-1\"}";//失败页面
         }
-        return "{\"msg\":\"-1\"}";//失败页面
     }
     @RequestMapping("rechecked")//查询是否存在这个
     @ResponseBody
